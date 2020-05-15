@@ -37,24 +37,24 @@ Watch and listen as the four button lights up randomly and produce different sou
 ## States and States Transitions
 Definition of the different states and their transition (transition functions)
 
-- splashScreen
-- gameScreen
-- gameoverScreen
+- splashScreen(){}
+- gameScreen(){}
+- gameoverScreen(){}
 
 ## Task
-main    - buildSplashScreen
-main    - buildGameScreen
-main    - buildGameOverScreen
+main - buildSplashScreen
+main - buildGameScreen
+main - buildGameOverScreen
 
-game    - drawCanvas
-game    - updateCanvas
-game    - startLoop
-game    - playerSays
-game    - compareResult
-game    - addStep
-game    - gameOver
+game - drawCanvas
+game - updateCanvas
+game - startLoop
+game - playerSays
+game - compareResult
+game - addStep
+game - gameOver
 
-button  - mumButton
+button - mumButton
 
 ## Links
 
