@@ -42,19 +42,19 @@ Definition of the different states and their transition (transition functions)
 - gameoverScreen(){}
 
 ## Task
-main - buildSplashScreen
-main - buildGameScreen
-main - buildGameOverScreen
+- main - buildSplashScreen
+- main - buildGameScreen
+- main - buildGameOverScreen
 
-game - drawCanvas
-game - updateCanvas
-game - startLoop
-game - playerSays
-game - compareResult
-game - addStep
-game - gameOver
+- game - drawCanvas
+- game - updateCanvas
+- game - startLoop
+- game - playerSays
+- game - compareResult
+- game - addStep
+- game - gameOver
 
-button - mumButton
+- button - mumButton
 
 ## Links
 
