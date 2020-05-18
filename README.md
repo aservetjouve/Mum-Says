@@ -1,4 +1,4 @@
-# MUM-Says
+# M.U.M SAYS
 
 ## Description
 Watch and listen as the four button lights up randomly and produce different sound. The player has to press the button in the same order to progress to the next round. With each round, the number of button to press increases as does the challenge. Your goal is to reach the highest score. The game ends when the player press the wrong button. 
