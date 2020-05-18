@@ -1,0 +1,122 @@
+/*=====RESET CSS=====*/
+
+html{
+    box-sizing: border-box;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    background-color: #021E08;
+    font-family: 'Press Start 2P', cursive;
+}
+
+/*=====COLOR VARIABLE=====*/
+
+.blackGreen {
+    color: #021E08;
+}
+
+.darkGreen {
+    color: #135C11;
+}
+
+.green {
+    color: #21891A;
+}
+
+.lightGreen{
+    color: #32C124;
+}
+
+.neonGreen{
+    color: #48FB2F;
+}
+
+.red {
+    color: #FF0000;
+}
+
+/*=====TYPOGRAPHY=====*/
+
+h1{
+    font-size: 50px;
+    margin-bottom: 0;
+}
+
+h2{
+    font-size: 25px;
+    margin-top: 0;
+}
+
+h3{
+    font-size: 23px;
+    align-content: justify;
+}
+
+p{
+    font-size: 20px;
+}
+/*=====INSTRUCTIONS=====*/
+
+main {
+    width: 100%;
+}
+
+#instructions{
+    height: 480px;
+    width: 769px;
+    border: 10px solid #135C11;
+    background-color: #21891A;
+    margin: 50px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+
+#gameStart{
+    border: 5px solid #135C11;
+    background-color: #48FB2F;
+    font-family:'Press Start 2P', cursive;
+    margin: 0 auto 50px auto;
+}
+
+/*=====GAME=====*/
+
+#gameBoard {
+    width: 550px;
+    height: 550px;
+    border: 10px solid #135C11;
+    background-color: #21891A;
+    margin: 30px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+#myCanvas {
+    z-index: 3;
+}
+
+
+/*=====GAME OVER=====*/
+
+#gameOver{
+    width: 500px;
+    height: 400px;
+    margin: 50px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#restartGame {
+    background-color: #FF0000;
+    border: none;
+    font-family:'Press Start 2P', cursive;
+    margin: 0 auto 50px auto;
+}
