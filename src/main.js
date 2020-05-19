@@ -2,40 +2,40 @@
 //=====IMAGES=====//
 
 let redOff = new Image();
-redOff.src = "/resources/img/redOff.png";
+redOff.src = "./resources/img/redOff.png";
 
 let redOn = new Image();
-redOn.src = "/resources/img/redOn.png";
+redOn.src = "./resources/img/redOn.png";
 
 let yellOff = new Image();
-yellOff.src = "/resources/img//yellOf.png";
+yellOff.src = "./resources/img//yellOf.png";
 
 let yellOn = new Image();
-yellOn.src = "/resources/img/yellOn.png";
+yellOn.src = "./resources/img/yellOn.png";
 
 let blueOff = new Image();
-blueOff.src = "/resources/img/blueOff.png";
+blueOff.src = "./resources/img/blueOff.png";
 
 let blueOn = new Image();
-blueOn.src = "/resources/img/blueOn.png";
+blueOn.src = "./resources/img/blueOn.png";
 
 let greenOff = new Image();
-greenOff.src = "/resources/img/greenOff.png";
+greenOff.src = "./resources/img/greenOff.png";
 
 let greenOn = new Image();
-greenOn.src = "/resources/img/greenOn.png";
+greenOn.src = "./resources/img/greenOn.png";
 
 let buttonFrame = new Image();
-buttonFrame.src = "/resources/img/structure.png";
+buttonFrame.src = "./resources/img/structure.png";
 
 //=====SOUND=====//
 
-let soundChoice = new Audio("/resources/sound/selectSound.mp3");
-let fail = new Audio("/resources/sound/Fail.wav");
-let soundYell = new Audio("/resources/sound/soundYell.wav");
-let soundBlue = new Audio("/resources/sound/soundBlue.wav");
-let soundGreen = new Audio("/resources/sound/soundGreen.wav");
-let soundRed = new Audio("/resources/sound/soundRed.wav");
+let soundChoice = new Audio("./resources/sound/selectSound.mp3");
+let fail = new Audio("./resources/sound/Fail.wav");
+let soundYell = new Audio("./resources/sound/soundYell.wav");
+let soundBlue = new Audio("./resources/sound/soundBlue.wav");
+let soundGreen = new Audio("./resources/sound/soundGreen.wav");
+let soundRed = new Audio("./resources/sound/soundRed.wav");
 
 
 
