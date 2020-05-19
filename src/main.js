@@ -128,56 +128,67 @@ function createGameScreen(){
     }, 1000);
  
     function createSequence(){
-        numberSequence+=1;
+        numberSequence +=1;
         console.log('TOUR ', numberSequence) // CHECK
         let randomNum = Math.floor(Math.random()*4);
         generatedSequence.push(randomNum);
         lightsUp();
-        console.log(generatedSequence.length); 
+        console.log("The Sequence lenght is ",generatedSequence.length); 
+        console.log("At the beginning User Key Count lenght is ",userKeycount)
     }
 
     function lightsUp(){
         for (let i=0; i<numberSequence;i++){
-            switch (generatedSequence[i]) {
-                case 0 : 
-                    ctx.drawImage(yellOn, 168, 28);
-                    soundYell.volume = 0.1;
-                    soundYell.play();
-                    setTimeout(function(){
-                        ctx.drawImage(yellOff, 168, 28);
-                    },500);
-                    break;
-
-                case 1 : 
-                    ctx.drawImage(blueOn, 289, 149);
-                    soundBlue.volume = 0.1;
-                    soundBlue.play();
-                    setTimeout(function(){
-                        ctx.drawImage(blueOff, 289, 149);
-                    },500);
-                    break; 
-                
-                case 2 : 
-                    ctx.drawImage(greenOn, 168, 269);
-                    soundGreen.volume = 0.1;
-                    soundGreen.play();
-                    setTimeout(function(){
-                        ctx.drawImage(greenOff, 168, 269);
-                    },500);
-                    break;
-
-                case 3 : 
-                    ctx.drawImage(redOn, 48, 149);
-                    soundRed.volume = 0.1;
-                    soundRed.play();
-                    setTimeout(function(){
-                        ctx.drawImage(redOff, 48, 149);
-                    },500);
-                    break;
-            }
+            let numberOfStep = 0;
+            let intervalId = setInterval(function(){
+                numberOfStep+=1;
+                switch (generatedSequence[i]) {
+                    case 0 : 
+                        ctx.drawImage(yellOn, 168, 28);
+                        soundYell.volume = 0.1;
+                        soundYell.play();
+                        setTimeout(function(){
+                            ctx.drawImage(yellOff, 168, 28);
+                        },500);
+                        break;
+    
+                    case 1 : 
+                        ctx.drawImage(blueOn, 289, 149);
+                        soundBlue.volume = 0.1;
+                        soundBlue.play();
+                        setTimeout(function(){
+                            ctx.drawImage(blueOff, 289, 149);
+                        },500);
+                        break; 
+                    
+                    case 2 : 
+                        ctx.drawImage(greenOn, 168, 269);
+                        soundGreen.volume = 0.1;
+                        soundGreen.play();
+                        setTimeout(function(){
+                            ctx.drawImage(greenOff, 168, 269);
+                        },500);
+                        break;
+    
+                    case 3 : 
+                        ctx.drawImage(redOn, 48, 149);
+                        soundRed.volume = 0.1;
+                        soundRed.play();
+                        setTimeout(function(){
+                            ctx.drawImage(redOff, 48, 149);
+                        },500);
+                        break;
+                }
+                if (numberOfStep == numberSequence){
+                    clearInterval(intervalId);
+                    
+                }
+            },700)
+            
         }
-        console.log("lightsUp is working " + generatedSequence)
+        
         getUserAnswer();
+        console.log("At the end User Key Count lenght is ",userKeycount)
     }
     
     
@@ -189,9 +200,10 @@ function createGameScreen(){
                     soundYell.volume = 0.1;
                     soundYell.play();
                     userSequence.push(0);
-                    userKeycount++;
+                    userKeycount+=1;
                     document.addEventListener("keyup",function(){
                         ctx.drawImage(yellOff, 168, 28);
+                        console.log("Y",userSequence);
                         return userSequence;
                     })
                 } else if (event.keyCode==39){ // BLUE BUTTON
@@ -199,21 +211,24 @@ function createGameScreen(){
                     soundBlue.volume = 0.1;
                     soundBlue.play();
                     userSequence.push(1);
-                    userKeycount++;
+                    userKeycount+=1;
                     console.log('Button B working');
                     document.addEventListener("keyup",function(){
                         ctx.drawImage(blueOff, 289, 149);
+                        console.log("B",userSequence);
                         return userSequence;
+                        
                     })
                 } else if (event.keyCode==40){ // GREEN BUTTON
                     ctx.drawImage(greenOn, 168, 269);
                     soundGreen.volume = 0.1;
                     soundGreen.play();
                     userSequence.push(2);
-                    userKeycount++;
+                    userKeycount+=1;
                     console.log('Button G working');
                     document.addEventListener("keyup",function(){
                         ctx.drawImage(greenOff, 168, 269);
+                        console.log("G",userSequence);
                         return userSequence;
                     })
                 } else if (event.keyCode==37){ // RED BUTTON
@@ -221,10 +236,11 @@ function createGameScreen(){
                     soundRed.volume = 0.1;
                     soundRed.play();
                     userSequence.push(3);
-                    userKeycount++;
+                    userKeycount+=1;
                     console.log('Button R working');
                     document.addEventListener("keyup",function(){
                         ctx.drawImage(redOff,48, 149);
+                        console.log("R",userSequence);
                         return userSequence;
                     })
                 }
@@ -242,10 +258,7 @@ function createGameScreen(){
                     console.log(numberSequence);
                 }
             }, 2000);
-            
-            
         
-      
     }
     
 
@@ -254,6 +267,7 @@ function createGameScreen(){
             console.log("NEXT");
             userSequence = [];
             userKeycount = 0;
+            console.log('userKeyCount is ',userKeycount)
             createSequence(); 
         } else {
             fail.volume = 0.1;
@@ -297,7 +311,7 @@ function createGameOverScreen(){
     document.body.appendChild(gameOverScreen);
 
     document.addEventListener("keydown",function(event){
-        if (event.keyCode ==80){
+        if (event.keyCode ==32){
             soundChoice.volume = 0.1;
             soundChoice.play();
             this.location.reload();    
@@ -305,4 +319,4 @@ function createGameOverScreen(){
     }); 
 }
 
-createSplashScreen();
+createSplashScreen(); 
