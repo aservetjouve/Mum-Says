@@ -7,8 +7,15 @@ html{
 body{
     margin: 0;
     padding: 0;
-    background-color: #021E08;
+    margin: 10px;
     font-family: 'Press Start 2P', cursive;
+    border-style: solid double;
+    border-color: #48FB2F;
+    border-left-width: 20px;
+    border-right-width: 20px;
+    box-shadow: inset 0 0 160px;
+    background-color: #021e08;
+    background-image: url("data:image/svg+xml,%3Csvg width='6' height='6' viewBox='0 0 6 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%2332c124' fill-opacity='0.58' fill-rule='evenodd'%3E%3Cpath d='M5 0h1L0 6V5zM6 5v1H5z'/%3E%3C/g%3E%3C/svg%3E");
 }
 
 /*=====COLOR VARIABLE=====*/
@@ -37,6 +44,13 @@ body{
     color: #FF0000;
 }
 
+.game-space-dark{
+    border: 10px solid #135C11;
+}
+
+.turnneon{
+    border: 10px solid #48FB2F !important;
+}
 /*=====TYPOGRAPHY=====*/
 
 h1{
@@ -68,12 +82,14 @@ main {
     height: 480px;
     width: 769px;
     border: 10px solid #135C11;
-    background-color: #21891A;
+    background-color: #021e08;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%2332c124' fill-opacity='0.79' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E");
     margin: 50px auto;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: space-between;
+    box-shadow: inset 0 0 160px;
 }
 
 
@@ -86,11 +102,13 @@ main {
 
 /*=====GAME=====*/
 
-#gameBoard {
+#game-space {
     width: 550px;
     height: 550px;
-    border: 10px solid #135C11;
-    background-color: #21891A;
+    
+    background-color: #021e08;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%2332c124' fill-opacity='0.79' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E"); 
+    box-shadow: inset 0 0 160px;
     margin: 30px auto;
     display: flex;
     flex-direction: column;
@@ -98,20 +116,30 @@ main {
     justify-content: space-evenly;
 }
 
-#myCanvas {
-    z-index: 3;
+.scoreBox {
+    width: 100%;
+    display: flex;
+    flex-wrap: nowrap;
 }
 
 
 /*=====GAME OVER=====*/
 
+.redMain{}
+
 #gameOver{
     width: 500px;
-    height: 400px;
+    height: 500px;
     margin: 50px auto;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+}
+
+.totalScoreBoard{
+    width: 100%;
+    display: flex;
     justify-content: center;
 }
 
@@ -121,3 +149,4 @@ main {
     font-family:'Press Start 2P', cursive;
     margin: 0 auto 50px auto;
 }
+
