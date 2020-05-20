@@ -5,25 +5,25 @@ let redOff = new Image();
 redOff.src = "./resources/img/redOff.png";
 
 let redOn = new Image();
-redOn.src = "./resources/img/redOn.png";
+redOn.src = "./resources/img/whiteRed.png";
 
 let yellOff = new Image();
-yellOff.src = "./resources/img//yellOf.png";
+yellOff.src = "./resources/img/yellOf.png";
 
 let yellOn = new Image();
-yellOn.src = "./resources/img/yellOn.png";
+yellOn.src = "./resources/img/whiteYell.png";
 
 let blueOff = new Image();
 blueOff.src = "./resources/img/blueOff.png";
 
 let blueOn = new Image();
-blueOn.src = "./resources/img/blueOn.png";
+blueOn.src = "./resources/img/whiteBlue.png";
 
 let greenOff = new Image();
 greenOff.src = "./resources/img/greenOff.png";
 
 let greenOn = new Image();
-greenOn.src = "./resources/img/greenOn.png";
+greenOn.src = "./resources/img/whiteGreen.png";
 
 let buttonFrame = new Image();
 buttonFrame.src = "./resources/img/structure.png";
@@ -56,10 +56,11 @@ function createSplashScreen(){
             <h2 class="lightGreen">>Memory. Upgrading. Machine.</h2>
         </section>
         <div id="info-container">
-            <section id="instructions">
+            <section id="instructions" class="game-space-dark">
                 <h3 class="neonGreen">>Welcome player... </h3>
                 <p class="neonGreen">>Repeat the sequence using your keyboard's arrows</p>
                 <p class="neonGreen">>Be careful, we do not accept any mistake.</p>
+                <p class="lightGreen">>PS: M.U.M. is not very young. Sometimes she needs time to process</p>
                 <button id="gameStart"><h3 class="blackGreen">>Ready ? Press Space.</h3></button>
             </section>
         </div>
@@ -72,6 +73,7 @@ function createSplashScreen(){
         if (event.keyCode ==32){
             let btnSelect = document.getElementById("gameStart");
             btnSelect.style.backgroundColor='#21891A';
+            document.querySelector(".game-space-dark").classList.add("turnneon");
             soundChoice.volume = 0.1;
             soundChoice.play();
             setTimeout(function(){
@@ -84,6 +86,8 @@ function createSplashScreen(){
 
 //=====GAME SCREEN=====//
 
+let generatedSequence =[];
+
 function createGameScreen(){
 
     let gameScreen = buildDom(`
@@ -92,10 +96,12 @@ function createGameScreen(){
             <h1 class="neonGreen">>M.U.M. SAYS</h1>
             <h2 class="lightGreen">>Memory. Upgrading. Machine.</h2>
         </section>
-        <div id="game-space">
+        <div id="game-space" class="game-space-dark">
+            <div class="scoreBox">
+                    <p class="neonGreen">>SCORE : </p>
+                    <p class="neonGreen score"></p>
+            </div>
             <section id="gameBoard">
-                <h4 class="neonGreen">>Round </h4>
-                <span class="round">0</span>
                 <div class="canvasBox">
                     <canvas id="myCanvas" width="500" height="500"></canvas>
                 </div>
@@ -111,8 +117,9 @@ function createGameScreen(){
 
     let userSequence = [];
     let userKeycount = 0;
-    let generatedSequence =[];
+    let boxStyle = document.querySelector(".game-space-dark");
     let numberSequence = 0;
+    var score = document.querySelector(".score").innerHTML = 0;
 
 
     setTimeout(function(){
@@ -138,9 +145,9 @@ function createGameScreen(){
     }
 
     function lightsUp(){
+        let numberOfStep = 0;
         for (let i=0; i<numberSequence;i++){
-            let numberOfStep = 0;
-            let intervalId = setInterval(function(){
+            let timeOut = setTimeout(function(){
                 numberOfStep+=1;
                 switch (generatedSequence[i]) {
                     case 0 : 
@@ -171,7 +178,7 @@ function createGameScreen(){
                         break;
     
                     case 3 : 
-                        ctx.drawImage(redOn, 48, 149);
+                        ctx.drawImage(redOn, 41, 149);
                         soundRed.volume = 0.1;
                         soundRed.play();
                         setTimeout(function(){
@@ -180,96 +187,112 @@ function createGameScreen(){
                         break;
                 }
                 if (numberOfStep == numberSequence){
-                    clearInterval(intervalId);
+                    clearTimeout(timeOut);
                     
                 }
-            },700)
+            },i*700)
             
         }
         
-        getUserAnswer();
-        console.log("At the end User Key Count lenght is ",userKeycount)
+        if (numberOfStep+1 === numberSequence){
+            getUserAnswer();
+        }
     }
     
     
     function getUserAnswer(){
-            document.addEventListener("keydown",function(event){ 
-    
+                $(document).keydown(function(event) {
+                 
                 if (event.keyCode==38){ // YELLOW BUTTON
                     ctx.drawImage(yellOn, 168, 28);
                     soundYell.volume = 0.1;
                     soundYell.play();
-                    userSequence.push(0);
                     userKeycount+=1;
-                    document.addEventListener("keyup",function(){
-                        ctx.drawImage(yellOff, 168, 28);
-                        console.log("Y",userSequence);
-                        return userSequence;
-                    })
+                    userSequence.push(0);
+                    boxStyle.classList.add("turnneon");
+                    
                 } else if (event.keyCode==39){ // BLUE BUTTON
                     ctx.drawImage(blueOn, 289, 149);
                     soundBlue.volume = 0.1;
                     soundBlue.play();
                     userSequence.push(1);
+                    boxStyle.classList.add("turnneon");
                     userKeycount+=1;
                     console.log('Button B working');
-                    document.addEventListener("keyup",function(){
-                        ctx.drawImage(blueOff, 289, 149);
-                        console.log("B",userSequence);
-                        return userSequence;
-                        
-                    })
+                    
                 } else if (event.keyCode==40){ // GREEN BUTTON
                     ctx.drawImage(greenOn, 168, 269);
                     soundGreen.volume = 0.1;
                     soundGreen.play();
+                    userKeycount+=1;
                     userSequence.push(2);
-                    userKeycount+=1;
+                    boxStyle.classList.add("turnneon");
                     console.log('Button G working');
-                    document.addEventListener("keyup",function(){
-                        ctx.drawImage(greenOff, 168, 269);
-                        console.log("G",userSequence);
-                        return userSequence;
-                    })
+                    
                 } else if (event.keyCode==37){ // RED BUTTON
-                    ctx.drawImage(redOn,48, 149);
+                    ctx.drawImage(redOn,41, 149);
+                    console.log("R",userSequence);
                     soundRed.volume = 0.1;
+                    console.log("R",userSequence);
                     soundRed.play();
-                    userSequence.push(3);
+                    console.log("R",userSequence); 
+                    console.log("R",userSequence);
                     userKeycount+=1;
+                    userSequence.push(3);
+                    boxStyle.classList.add("turnneon");
+                    console.log("R",userSequence);
                     console.log('Button R working');
-                    document.addEventListener("keyup",function(){
-                        ctx.drawImage(redOff,48, 149);
-                        console.log("R",userSequence);
-                        return userSequence;
-                    })
+                
                 }
                 
             });
 
-            let intervalId = setInterval(function(){
-                if (userKeycount == numberSequence){
-                    console.log('YES');
-                    clearInterval(intervalId);
-                    checkCorrect();
-                }else{
-                    console.log('NO');
-                    console.log(userKeycount);
-                    console.log(numberSequence);
+            $(document).keyup(function(event2) {
+                if (event2.keyCode === 38 ) {
+                    ctx.drawImage(yellOff, 168, 28);
+                    boxStyle.classList.remove("turnneon");
+                    
+                    return userSequence;
+                } else if (event2.keyCode === 39) {
+                    ctx.drawImage(blueOff, 289, 149);
+                    boxStyle.classList.remove("turnneon");
+                    
+                    return userSequence;
+                }else if (event2.keyCode === 40){
+                    ctx.drawImage(greenOff, 168, 269);
+                    boxStyle.classList.remove("turnneon");
+                    
+                    return userSequence;
+                }else if (event2.keyCode === 37){
+                    ctx.drawImage(redOff,48, 149);
+                    boxStyle.classList.remove("turnneon");
+                    return userSequence;
                 }
-            }, 2000);
-        
+            });
+
+            
     }
+
+    var intervalId = setInterval(function(){
+        console.log(' SET INTERVAL : NUMBER OF SEQUENCE IS');
+        if (userSequence.length == numberSequence || userSequence.length >= numberSequence){
+            console.log('NUMBER OF SEQUENCE IS');
+            checkCorrect();
+        }
+    }, 2000);
+
     
 
     function checkCorrect(){
         if ( JSON.stringify(userSequence) == JSON.stringify(generatedSequence)){
             console.log("NEXT");
             userSequence = [];
+            score = document.querySelector(".score").innerHTML = score+1;
             userKeycount = 0;
-            console.log('userKeyCount is ',userKeycount)
+            console.log('userKeyCount is ',userKeycount);
             createSequence(); 
         } else {
+            clearInterval(intervalId);
             fail.volume = 0.1;
             fail.play();
             gameScreen.remove();
@@ -277,38 +300,34 @@ function createGameScreen(){
         }
     }
     
-
-    document.addEventListener("keypress",function(event){
-        if (event.keyCode ==13){
-            fail.volume = 0.1;
-            fail.play();
-            gameScreen.remove(); 
-            return createGameOverScreen()
-        }
-    });
 }
 
 //=====GAME OVER SCREEN=====//
 
 
 function createGameOverScreen(){
+    let totalScore = generatedSequence.length-1;
     let gameOverScreen = buildDom(`
     <main>
         <section id="title">
             <h1 class="red">>M.U.M. SAYS</h1>
             <h2 class="red">>Memory. Upgrading. Machine.</h2>
         </section>
-        <div id="game-space">
             <section id="gameOver">
                 <h2 class="red">>GAME OVER</h2>
-                <h4 class="red">>Your score : </h4>
-                <span class="score"></span>
-                <button id="restartGame"><h3 class="blackGreen">>Dare to try again ?</h3></button>
+                <div class="totalScoreBoard">
+                    <h4 class="red">>YOUR SCORE :  </h4>
+                    <h4 class="red score"></h4>
+                </div>
+                
+                <button id="restartGame"><h3 class="blackGreen">>Dare to try again ? Press Space.</h3></button>
             </section>
-        </div>
+        
     </main>`);
 
     document.body.appendChild(gameOverScreen);
+
+    document.querySelector('.score').innerHTML = totalScore;
 
     document.addEventListener("keydown",function(event){
         if (event.keyCode ==32){
