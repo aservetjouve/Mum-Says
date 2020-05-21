@@ -60,7 +60,7 @@ function main(){
                         <h2 class="lightGreen">>Memory. Upgrading. Machine.</h2>
                     </header>
                     <div class ="about">
-                        <a href="/about.html">About</a>
+                        <a href="./about.html">About</a>
                     </div>
                 </section>
                 <div id="info-container">
@@ -71,6 +71,14 @@ function main(){
                         <button id="gameStart"><h3 class="blackGreen">>Press space to start.</h3></button>
                     </section>
                 </div>
+                <section id="responsive">
+                    <div id="small-screen">
+                        <h3 class="neonGreen">>Too bad, it seems your screen is too small to fully enjoy the game...</h3>
+                    </div>
+                    <div class ="small-about">
+                            <a href="./about.html">About</a>
+                    </div>
+                </section>
             </main>`);
         document.body.appendChild(splashScreen);
 
@@ -119,6 +127,7 @@ function main(){
                             <canvas id="myCanvas" width="500" height="500"></canvas>
                         </div>
                     </section>
+
                 </div>
             </main>`);
         document.body.appendChild(gameScreen);
@@ -313,6 +322,8 @@ function main(){
                     alert("M.U.M. is looking");
                 }else if (score === 20){
                     alert("You just made M.U.M. smile !");
+                }else if (score === 30){
+                    alert("I've never seen M.U.M. like this before")
                 }
                 createSequence();
                 
@@ -339,7 +350,7 @@ function main(){
                     <h2 class="red">>Memory. Upgrading. Machine.</h2>
                 </header>
                 <div class ="about">
-                    <a href="/about.html">About</a>
+                    <a href="./about.html">About</a>
                 </div>
             </section>
                 <section id="gameOver">
