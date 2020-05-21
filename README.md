@@ -3,36 +3,30 @@
 ## Description
 Watch and listen as the four button lights up randomly and produce different sound. The player has to press the button in the same order to progress to the next round. With each round, the number of button to press increases as does the challenge. Your goal is to reach the highest score. The game ends when the player press the wrong button. 
 
+[Click here to play](https://aservetjouve.github.io/Mum-Says/)
+
 ## MVP (DOM - CANVAS)
 
 - Game has four buttons
 - Buttons light up and produce sound randomly
 - Increasing points value
-- Increasing speed 
 
 ## Backlog
 
-- Add scoreboard
+- Add leaderboard
 - Add different level
-
 
 # Data structure
 
 ## main.js
+- buildDom(){}
 - buildSplashScreen(){}
 - buildGameScreen(){}
 - buildGameOverScreen(){}
-
-## game.js
-- drawCanvas(){}
-- updateCanvas () {}
-- startLoop(){}
-- playerSays(){}
-- addStep(){}
-- gameOver(){}
-
-## button.js
-- mumButton(){}
+- createSequence(){}
+- lightsUp(){}
+- getUserAnswer(){}
+- checkCorrect(){}
 
 ## States and States Transitions
 Definition of the different states and their transition (transition functions)
@@ -45,30 +39,24 @@ Definition of the different states and their transition (transition functions)
 - main - buildSplashScreen
 - main - buildGameScreen
 - main - buildGameOverScreen
+- main - createSequence(){}
+- main - lightsUp(){}
+- main - getUserAnswer(){}
+- main - checkCorrect(){}
 
-- game - drawCanvas
-- game - updateCanvas
-- game - startLoop
-- game - playerSays
-- game - compareResult
-- game - addStep
-- game - gameOver
-
-- button - mumButton
 
 ## Links
 
 
 ### Trello
-[Link url](https://trello.com/b/xgaVDvtA/mum-says)
+If you want to check out the organisation[Here](https://trello.com/b/xgaVDvtA/mum-says)
 
 
 ### Git
-URls for the project repo and deploy
-[Link Repo](https://github.com/aservetjouve/Mum-Says)
-[Link Deploy](http://github.com)
+- The repo [Here](https://github.com/aservetjouve/Mum-Says)
+- The game is deployed [Here](https://aservetjouve.github.io/Mum-Says/)
 
 
-### Slides
+### Presentation of the project
 URls for the project presentation (slides)
-[Link Slides.com](http://slides.com)
+[Google Slides](https://docs.google.com/presentation/d/1gRjAfGmWms9KaM21uulGHl4k5CKNFpLPf5Q2cWV5aSc/edit?usp=sharing)
