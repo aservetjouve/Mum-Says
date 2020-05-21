@@ -28,6 +28,7 @@ let greenOn = newImage("./resources/img/whiteGreen.png");
 //=====SOUND=====//
 
 let Sound = {
+    intro : new Audio("/resources/sound/M.U.M. Intro.mp3"),
     choice : new Audio("./resources/sound/selectSound.mp3"),
     fail : new Audio("./resources/sound/Fail.wav"),
     yellow: new Audio("./resources/sound/soundYell.wav"),
@@ -49,7 +50,12 @@ function main(){
     let gameScreen;
     let gameOverScreen;
     let score = 0;
-
+    let scoreHigh = 0;
+    
+    if (score > scoreHigh){
+        scoreHigh = score;
+    }
+    
     //=====HOME SCREEN=====//
     function createSplashScreen(){
         splashScreen = buildDom(`
@@ -314,28 +320,19 @@ function main(){
                 console.log("NEXT");
                 userSequence = [];
                 score = document.querySelector(".score").innerHTML = score+1;
-                if (score === 5){
-                    alert("M.U.M. is not impressed");
-                } else if (score === 10){
-                    alert("M.U.M. is listening");
-                } else if (score === 15){
-                    alert("M.U.M. is looking");
-                }else if (score === 20){
-                    alert("You just made M.U.M. smile !");
-                }else if (score === 30){
-                    alert("I've never seen M.U.M. like this before")
-                }
                 createSequence();
                 
             } else {
                 clearInterval(intervalId);
-                Sound.fail.volume=0.1;
+                Sound.fail.volume=0.4;
                 Sound.fail.play();
                 gameScreen.remove();
                 createGameOverScreen();
             }
         }
-        
+        if (score > scoreHigh){
+            scoreHigh = score;
+        }
     }
 
     //=====GAME OVER SCREEN=====//
@@ -356,8 +353,13 @@ function main(){
                 <section id="gameOver">
                     <h5 class="red">>GAME OVER</h5>
                     <div class="totalScoreBoard">
-                        <h4 class="red">>YOUR SCORE :  </h4>
-                        <h4 class="red score"></h4>
+                        <div class="normal-score">
+                            <h4 class="red">>YOUR SCORE :  </h4>
+                            <h4 class="red score"> </h4>
+                        </div>
+                        <div class="highest-score">
+                            <h4 class="red highscore"></h4>
+                        </div>
                     </div> 
                     <button id="restartGame" class="quadrat"><h3 class="blackGreen">>Press space to try again.</h3></button>
             </section>
@@ -365,19 +367,42 @@ function main(){
 
         document.body.appendChild(gameOverScreen);
         document.querySelector('.score').innerHTML = score;
+
+        if (score < 5){
+            document.querySelector('.highscore').innerHTML = ">M.U.M. doesn't know what do you with you.";
+        } else if (score < 10){
+            document.querySelector('.highscore').innerHTML = ">M.U.M. is not impressed";
+        } else if (score < 15){
+            document.querySelector('.highscore').innerHTML = ">M.U.M. is looking";
+        }else if (score < 20){
+            document.querySelector('.highscore').innerHTML = ">You did well, but not enough for M.U.M.";
+        } else if (score < 25){
+            document.querySelector('.highscore').innerHTML = ">M.U.M. is alright with this";
+        }else if (score < 35){
+            document.querySelector('.highscore').innerHTML = ">I think M.U.M. just smiled !";
+        }
+    
         document.addEventListener("keydown",function(event){
             if (event.keyCode ==32){
                 Sound.choice.play();
-                setTimeout(function(){
+                setTimeout(function(){ 
                     this.location.reload(); 
                 },500);
                 
             }
         }); 
     }
-    //Start the game
-    createSplashScreen();
-}
+    //Start the game after music
+    setTimeout(function(){
+        Sound.intro.volume = 0.2;
+        Sound.intro.play(); 
+    },1);
+
+    setTimeout(function(){
+        createSplashScreen();
+    },2900);
+    
+} 
 
 //Wait before the page appears, avoiding styling issues
 window.addEventListener("load", main);

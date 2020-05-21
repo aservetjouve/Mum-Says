@@ -182,7 +182,18 @@ main {
 .totalScoreBoard{
     width: 100%;
     display: flex;
+    flex-direction: column;
     justify-content: center;
+}
+
+.normal-score{
+    display: flex;
+    background-color: #021E08;
+}
+
+.highest-score{
+    display: flex;
+    background-color: #021E08;
 }
 
 #restartGame {
@@ -192,6 +203,8 @@ main {
     font-family:'Press Start 2P', cursive;
     margin: 0 auto 50px auto; 
 }
+
+
 
 /*=====FLICKERING=====*/
 
