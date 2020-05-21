@@ -106,7 +106,7 @@ function main(){
                         <h2 class="lightGreen">>Memory. Upgrading. Machine.</h2>
                     </header>
                     <div class ="about">
-                        <a href="/about.html">About</a>
+                        <a href="./about.html">About</a>
                     </div>
                 </section>
                 <div id="game-space" class="game-space-dark">
