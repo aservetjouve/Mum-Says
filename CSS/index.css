@@ -7,7 +7,7 @@ html{
 body{
     margin: 0;
     padding: 0;
-    margin: 10px;
+    margin-top: 10px;
     font-family: 'Press Start 2P', cursive;
     border-style: solid double;
     border-color: #48FB2F;
@@ -77,6 +77,36 @@ h5{
 p{
     font-size: 20px;
 }
+
+/*=====ABOUT=====*/
+
+#title{
+    display: flex;
+    height: 145px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.about{
+    margin-right: 50px;
+    padding: 30px ;
+    border: 10px solid #135C11;
+
+}
+
+.about:hover{
+    margin-right: 50px;
+    padding: 30px ;
+    border: 10px solid #135C11;
+    background-color: #48FB2F;
+}
+
+.about a{
+    text-decoration: none;
+    font-size: 20px;
+    color: white;
+}
+
 /*=====INSTRUCTIONS=====*/
 
 main {
@@ -155,13 +185,13 @@ main {
 }
 
 .quadrat {
-   -webkit-animation: NAME-YOUR-ANIMATION 2s infinite; /* Safari 4+ */
-    -moz-animation:    NAME-YOUR-ANIMATION 2s infinite; /* Fx 5+ */
-    -o-animation:      NAME-YOUR-ANIMATION 2s infinite; /* Opera 12+ */
-    animation:         NAME-YOUR-ANIMATION 2s infinite; /* IE 10+, Fx 29+ */
+   -webkit-animation: flicker 2s infinite; /* Safari 4+ */
+    -moz-animation:flicker 2s infinite; /* Fx 5+ */
+    -o-animation: flicker 2s infinite; /* Opera 12+ */
+    animation: flicker 2s infinite; /* IE 10+, Fx 29+ */
   }
   
-  @-webkit-keyframes NAME-YOUR-ANIMATION {
+  @keyframes flicker {
   0%, 44% {
       background-color: #021e08;
       border: 3px solid #FF0000; 
