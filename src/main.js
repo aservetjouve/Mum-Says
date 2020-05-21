@@ -28,7 +28,7 @@ let greenOn = newImage("./resources/img/whiteGreen.png");
 //=====SOUND=====//
 
 let Sound = {
-    intro : new Audio("/resources/sound/M.U.M. Intro.mp3"),
+    intro : new Audio("./resources/sound/M.U.M. Intro.mp3"),
     choice : new Audio("./resources/sound/selectSound.mp3"),
     fail : new Audio("./resources/sound/Fail.wav"),
     yellow: new Audio("./resources/sound/soundYell.wav"),
