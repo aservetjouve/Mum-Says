@@ -114,6 +114,10 @@ p{
     display: none;
 }
 
+.hidden {
+    visibility: hidden;
+}
+
 /*=====INSTRUCTIONS=====*/
 
 main {
@@ -213,7 +217,15 @@ main {
     -moz-animation:flicker 2s infinite; /* Fx 5+ */
     -o-animation: flicker 2s infinite; /* Opera 12+ */
     animation: flicker 2s infinite; /* IE 10+, Fx 29+ */
-  }
+}
+
+.quadrat1 {
+    -webkit-animation: flicker2 2s infinite; /* Safari 4+ */
+     -moz-animation:flicker2 2s infinite; /* Fx 5+ */
+     -o-animation: flicker2 2s infinite; /* Opera 12+ */
+     animation: flicker2 2s infinite; /* IE 10+, Fx 29+ */
+   }
+
   
 @keyframes flicker {
   0%, 44% {
@@ -225,6 +237,17 @@ main {
       border: 3px solid #021e08;
   }
 }
+
+@keyframes flicker2 {
+    0%, 44% {
+        background-color: #021e08;
+        border: 3px solid #48FB2F; 
+    }
+    45%, 100% {
+        background-color: #48FB2F;
+        border: 3px solid #021e08;
+    }
+  }
 
 /*=====RESPONSIVE=====*/
 
@@ -272,6 +295,10 @@ main {
         box-shadow: inset 0 0 160px;
         line-height: 70px;
         text-align: justify;
+    }
+
+    .hidden{
+        visibility: unset;
     }
 } 
 

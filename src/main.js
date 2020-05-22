@@ -34,7 +34,8 @@ let Sound = {
     yellow: new Audio("./resources/sound/soundYell.wav"),
     blue : new Audio("./resources/sound/soundBlue.wav"),
     green: new Audio("./resources/sound/soundGreen.wav"),
-    red: new Audio("./resources/sound/soundRed.wav")
+    red: new Audio("./resources/sound/soundRed.wav"),
+    outro: new Audio("./resources/sound/M.U.M. Outro.mp3")
 };
 
 //==========MAIN GAME FUNCTION==========//
@@ -50,31 +51,27 @@ function main(){
     let gameScreen;
     let gameOverScreen;
     let score = 0;
-    let scoreHigh = 0;
     
-    if (score > scoreHigh){
-        scoreHigh = score;
-    }
     
     //=====HOME SCREEN=====//
     function createSplashScreen(){
         splashScreen = buildDom(`
             <main>
-                <section id="title">
-                    <header>
+                <section id="title" class="hidden">
+                    <header id="header">
                         <h1 class="neonGreen">>M.U.M. SAYS</h1>
                         <h2 class="lightGreen">>Memory. Upgrading. Machine.</h2>
                     </header>
-                    <div class ="about">
+                    <div id="aboutMe"class ="about">
                         <a href="./about.html">About</a>
                     </div>
                 </section>
-                <div id="info-container">
+                <div id="info-container" class="hidden"> 
                     <section id="instructions" class="game-space-dark">
                         <h3 class="neonGreen">>Welcome player... </h3>
                         <p class="neonGreen">>Repeat the sequence using your keyboard's arrows</p>
                         <p class="lightGreen">>PS: M.U.M. is not very young. Sometimes she needs time to process</p>
-                        <button id="gameStart"><h3 class="blackGreen">>Press space to start.</h3></button>
+                        <button id="gameStart" class="hidden quadrat1"><h3 class="blackGreen">>Press space to start.</h3></button>
                     </section>
                 </div>
                 <section id="responsive">
@@ -133,7 +130,6 @@ function main(){
                             <canvas id="myCanvas" width="500" height="500"></canvas>
                         </div>
                     </section>
-
                 </div>
             </main>`);
         document.body.appendChild(gameScreen);
@@ -155,7 +151,7 @@ function main(){
             ctx.drawImage(redOff, 48, 149);
         }, 10);
 
-        //The player can adapt
+        //The player can adapt 
         setTimeout(function(){
             createSequence();
         }, 1000);
@@ -317,26 +313,25 @@ function main(){
 
         function checkCorrect(){
             if ( JSON.stringify(userSequence) == JSON.stringify(generatedSequence)){
-                console.log("NEXT");
                 userSequence = [];
                 score = document.querySelector(".score").innerHTML = score+1;
                 createSequence();
                 
             } else {
                 clearInterval(intervalId);
-                Sound.fail.volume=0.4;
+                Sound.fail.volume=0.2;
                 Sound.fail.play();
+                Sound.outro.volume=0.2;
+                Sound.outro.play();
                 gameScreen.remove();
                 createGameOverScreen();
             }
         }
-        if (score > scoreHigh){
-            scoreHigh = score;
-        }
+          
     }
-
+  
     //=====GAME OVER SCREEN=====//
-
+ 
 
     function createGameOverScreen(){
         gameOverScreen = buildDom
@@ -358,7 +353,7 @@ function main(){
                             <h4 class="red score"> </h4>
                         </div>
                         <div class="highest-score">
-                            <h4 class="red highscore"></h4>
+                            <h4 class="red mumComment"></h4>
                         </div>
                     </div> 
                     <button id="restartGame" class="quadrat"><h3 class="blackGreen">>Press space to try again.</h3></button>
@@ -369,39 +364,50 @@ function main(){
         document.querySelector('.score').innerHTML = score;
 
         if (score < 5){
-            document.querySelector('.highscore').innerHTML = ">M.U.M. doesn't know what do you with you.";
+            document.querySelector('.mumComment').innerHTML = ">M.U.M. doesn't know what do you with you.";
         } else if (score < 10){
-            document.querySelector('.highscore').innerHTML = ">M.U.M. is not impressed";
+            document.querySelector('.mumComment').innerHTML = ">M.U.M. is not impressed";
         } else if (score < 15){
-            document.querySelector('.highscore').innerHTML = ">M.U.M. is looking";
+            document.querySelector('.mumComment').innerHTML = ">M.U.M. is looking";
         }else if (score < 20){
-            document.querySelector('.highscore').innerHTML = ">You did well, but not enough for M.U.M.";
+            document.querySelector('.mumComment').innerHTML = ">You did well, but not enough for M.U.M.";
         } else if (score < 25){
-            document.querySelector('.highscore').innerHTML = ">M.U.M. is alright with this";
+            document.querySelector('.mumComment').innerHTML = ">M.U.M. is alright with this";
         }else if (score < 35){
-            document.querySelector('.highscore').innerHTML = ">I think M.U.M. just smiled !";
+            document.querySelector('.mumComment').innerHTML = ">I think M.U.M. just smiled !";
         }
     
         document.addEventListener("keydown",function(event){
             if (event.keyCode ==32){
                 Sound.choice.play();
                 setTimeout(function(){ 
-                    this.location.reload(); 
+                    this.location.reload();  
                 },500);
                 
             }
         }); 
     }
-    //Start the game after music
+    
+    //Animation for the intro
     setTimeout(function(){
-        Sound.intro.volume = 0.2;
-        Sound.intro.play(); 
-    },1);
+        const header = document.getElementById("title");
+        header.classList.remove("hidden");
+    },2900);
 
     setTimeout(function(){
-        createSplashScreen();
-    },2900);
-    
+        const header = document.getElementById("info-container");
+        header.classList.remove("hidden");
+    },4700);
+
+    setTimeout(function(){
+        const header = document.getElementById("gameStart");
+        header.classList.remove("hidden");
+    },6400);
+
+    //Start the game after loading
+    createSplashScreen();
+    Sound.intro.volume =0.2;
+    Sound.intro.play();
 } 
 
 //Wait before the page appears, avoiding styling issues

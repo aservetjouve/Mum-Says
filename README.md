@@ -49,7 +49,7 @@ Definition of the different states and their transition (transition functions)
 
 
 ### Trello
-If you want to check out the organisation[Here](https://trello.com/b/xgaVDvtA/mum-says)
+If you want to check out the organisation [Here](https://trello.com/b/xgaVDvtA/mum-says)
 
 
 ### Git
