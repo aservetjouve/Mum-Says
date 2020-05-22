@@ -57,7 +57,7 @@ function main(){
     function createSplashScreen(){
         splashScreen = buildDom(`
             <main>
-                <section id="title" class="hidden">
+                <section id="title">
                     <header id="header">
                         <h1 class="neonGreen">>M.U.M. SAYS</h1>
                         <h2 class="lightGreen">>Memory. Upgrading. Machine.</h2>
@@ -66,12 +66,12 @@ function main(){
                         <a href="./about.html">About</a>
                     </div>
                 </section>
-                <div id="info-container" class="hidden"> 
+                <div id="info-container"> 
                     <section id="instructions" class="game-space-dark">
                         <h3 class="neonGreen">>Welcome player... </h3>
                         <p class="neonGreen">>Repeat the sequence using your keyboard's arrows</p>
                         <p class="lightGreen">>PS: M.U.M. is not very young. Sometimes she needs time to process</p>
-                        <button id="gameStart" class="hidden quadrat1"><h3 class="blackGreen">>Press space to start.</h3></button>
+                        <button id="gameStart" class=" quadrat1"><h3 class="blackGreen">>Press space to start.</h3></button>
                     </section>
                 </div>
                 <section id="responsive">
@@ -388,21 +388,7 @@ function main(){
         }); 
     }
     
-    //Animation for the intro
-    setTimeout(function(){
-        const header = document.getElementById("title");
-        header.classList.remove("hidden");
-    },2900);
-
-    setTimeout(function(){
-        const header = document.getElementById("info-container");
-        header.classList.remove("hidden");
-    },4700);
-
-    setTimeout(function(){
-        const header = document.getElementById("gameStart");
-        header.classList.remove("hidden");
-    },6400);
+    
 
     //Start the game after loading
     createSplashScreen();
