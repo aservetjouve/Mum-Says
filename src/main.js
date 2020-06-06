@@ -388,7 +388,6 @@ function main(){
         }); 
     }
     
-    
 
     //Start the game after loading
     createSplashScreen();
